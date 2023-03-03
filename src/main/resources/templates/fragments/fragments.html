@@ -1,29 +1,79 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
 
-<link rel="stylesheet"
-	th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" />
-<link rel="stylesheet" th:href="@{/css/main.css}" />
+	<th:block th:fragment="form">
+		<div class="mb-3">
+			<label for="titolo" class="form-label">Titolo</label> <input
+				type="text" class="form-control" id="title" th:field="*{titolo}"
+				th:errorClass="is-invalid">
+			<div th:if="${#fields.hasErrors('titolo')}" class="invalid-feedback">
+				<ul>
+					<li th:each="err : ${#fields.errors('titolo')}">[[${err}]]</li>
+				</ul>
+			</div>
+		</div>
 
-<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+		<div class="mb-3">
+			<label for="descrizione" class="form-label">Descrizione</label> <input
+				type="text" class="form-control" id="descrizione"
+				th:field="*{descrizione}" th:errorClass="is-invalid">
+			<div th:if="${#fields.hasErrors('descrizione')}"
+				class="invalid-feedback">
+				<ul>
+					<li th:each="err : ${#fields.errors('descrizione')}">[[${err}]]</li>
+				</ul>
+			</div>
+		</div>
 
+		<div class="mb-3">
+			<label for="url" class="form-label">Url</label> <input type="text"
+				class="form-control" id="url" th:field="*{url}"
+				th:errorClass="is-invalid">
+			<div th:if="${#fields.hasErrors('url')}" class="invalid-feedback">
+				<ul>
+					<li th:each="err : ${#fields.errors('url')}">[[${err}]]</li>
+				</ul>
+			</div>
+		</div>
 
-<nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Gli album delle mie foto</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/photos">Foto</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/categories">Categorie</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+		<div class="mb-3">
+			<label for="tag" class="form-label">Tag</label> <input type="text"
+				class="form-control" id="tag" th:field="*{tag}"
+				th:errorClass="is-invalid">
+			<div th:if="${#fields.hasErrors('tag')}" class="invalid-feedback">
+				<ul>
+					<li th:each="err : ${#fields.errors('tag')}">[[${err}]]</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="mb-3">
+			<label for="Available" class="form-label">Visibile:</label><br>
+			<input type="radio" id="visibleTrue" name="visibilità" value="1"
+				th:field="*{visibilità}">   <label for="visibleTrue">Si</label><br>
+			<input type="radio" id="visibleFalse" name="visibilità" value="1"
+				th:field="*{visibilità}">   <label for="visibleFalse">No</label>
+		</div>
+
+		<div class="mb-3">
+			<label class="input-group">Categorie: </label>
+			<div th:each="category : ${categorie}" class="me-4">
+				<input type="checkbox" th:value="${category.id}"
+					th:field="*{categorie}" th:id="|categorie_${category.id}|">
+				<label th:for="|categorie_${category.id}|">[[${category.name}]]</label>
+			</div>
+		</div>
+
+		<div>
+			<a class="btn btn-primary" th:href="@{/photos}" role="button">Annulla</a>
+			<button type="submit" class="btn btn-primary">Invia</button>
+		</div>
+	</th:block>
+
+</body>
+</html>
