@@ -66,6 +66,7 @@ public class FotoController {
 	public String store(@Valid @ModelAttribute("foto") Foto formPhoto, BindingResult bindingCreate, Model model) {
 
 		if (bindingCreate.hasErrors()) {
+			model.addAttribute("categorie", categoryRepo.findAll());
 			return "/photos/createFoto";
 		}
 
@@ -87,6 +88,7 @@ public class FotoController {
 	public String update(@Valid @ModelAttribute("foto") Foto formPhoto, BindingResult bindingEdit, Model model) {
 
 		if (bindingEdit.hasErrors()) {
+			model.addAttribute("categorie", categoryRepo.findAll());
 			return "photos/edit";
 		}
 

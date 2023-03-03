@@ -21,6 +21,11 @@
 			</p>
 			</div>
 		</div>
+		<div class="mt-3">
+				<form th:action="@{'/photos/delete/{id}'(id=${photo.id})}" method="post">
+					<button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure to delete this photo?');">Cancella Foto</button>
+				</form>
+		</div>
 	</div>
 	<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.bundle.min.js}"></script>
 </body>
