@@ -2,6 +2,7 @@ package com.example.demo.models;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,7 +30,7 @@ public class Foto {
 
 		private Boolean visibilità;
 
-		@OneToMany(mappedBy = "foto")
+		@OneToMany(mappedBy = "foto", cascade = CascadeType.ALL)
 		private List<Commenti> commenti;
 
 		@ManyToMany

@@ -11,19 +11,31 @@
 		<div class="row">
 			<h1>Dettaglio foto</h1>
 			<div>
-			<p>
-			[[${foto.id}]] - 
-			[[${foto.titolo}]] -
-			[[${foto.descrizione}]] -
-			[[${foto.url}]] -
-			[[${foto.tag}]] -
-			[[${foto.visibilità}]]
-			</p>
+				<p>
+				[[${foto.id}]] - 
+				[[${foto.titolo}]] -
+				[[${foto.descrizione}]] -
+				[[${foto.url}]] -
+				[[${foto.tag}]] -
+				[[${foto.visibilità}]]
+				</p>
 			</div>
+			<div th:if="${photo.categories.size()>0}">
+					<p>Categorie:</p>
+					<ul th:each="category : ${photo.categories}">
+						<li>[[${category.nome}]]</li>
+					</ul>
+				</div>
+				<div th:if="${photo.comments.size()>0}">
+					<p>Commenti:</p>
+					<ul th:each="comment : ${photo.comments}">
+						<li>[[${commenti.text}]]</li>
+					</ul>
+				</div>
 		</div>
 		<div class="mt-3">
 				<form th:action="@{'/photos/delete/{id}'(id=${photo.id})}" method="post">
-					<button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure to delete this photo?');">Cancella Foto</button>
+					<button class="btn btn-danger" type="submit" onclick="return confirm('Sicuro di voler cancellare questo elemento?');">Cancella</button>
 				</form>
 		</div>
 	</div>

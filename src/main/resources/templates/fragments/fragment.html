@@ -5,6 +5,47 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
+		<th:block th:fragment="header">
+		<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+		<link th:rel="stylesheet"
+			th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" />
+		<link th:rel="stylesheet"
+			th:href="@{/webjars/font-awesome/6.3.0/css/all.min.css} " />
+	</th:block>
+
+	<div th:fragment="script">
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js"
+			integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g=="
+			crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	</div>
+
+	<th:block th:fragment="navbar">
+		<nav id="nav" class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+				<a class="navbar-brand" id="logo" href="#">MyOnlinePhoto</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="/photos">Home</a></li>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="/categories">Categorie</a></li>
+					</ul>
+				</div>
+				<div class="text-end fs-3 px-3">
+					<a href="" class="text-black"><i class="fa-solid fa-unlock"></i></a>
+					<a href="" class="text-black"><i class="fa-solid fa-lock"></i></a>
+				</div>
+			</div>
+		</nav>
+	</th:block>
 
 	<th:block th:fragment="form">
 		<div class="mb-3">
@@ -56,7 +97,7 @@
 			<label for="Available" class="form-label">Visibile:</label><br>
 			<input type="radio" id="visibleTrue" name="visibilità" value="1"
 				th:field="*{visibilità}">   <label for="visibleTrue">Si</label><br>
-			<input type="radio" id="visibleFalse" name="visibilità" value="1"
+			<input type="radio" id="visibleFalse" name="visibilità" value="0"
 				th:field="*{visibilità}">   <label for="visibleFalse">No</label>
 		</div>
 
@@ -78,7 +119,7 @@
 	<th:block th:fragment="formCategorie">
 		<div class="mb-3">
 			<label for="name" class="form-label">Nome</label> <input
-				type="text" class="form-control" id="name" th:field="*{nome}" th:errorClass="is-invalid">
+				type="text" class="form-control" id="nome" th:field="*{nome}" th:errorClass="is-invalid">
 			 <div th:if="${#fields.hasErrors('nome')}" class="invalid-feedback">
 				<ul>
 					<li th:each="err : ${#fields.errors('nome')}">[[${err}]]</li>
@@ -91,7 +132,9 @@
 			<button type="submit" class="btn btn-primary">Invia</button>
 		</div>
 	</th:block>
-	
+	<th:block th:fragment="footer">
+		<div id="footer"></div>
+	</th:block>
 	
 
 </body>
