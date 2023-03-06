@@ -12,5 +12,7 @@ public interface FotoRepository extends JpaRepository<Foto, Integer> {
 
 	List<Foto> findByTitleLikeOrTagLike(String title, String tag);
 
+	List<Foto> finByIsVisibileTrue();
+
 	
 }

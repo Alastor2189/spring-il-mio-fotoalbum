@@ -13,7 +13,7 @@
 				<a class="btn btn-primary" th:href="@{/categories/create}" role="button">Crea</a>
 				<a class="btn btn-primary" th:href="@{/photos}" role="button">Foto</a>
 			</div>
-			<div>
+			<div th:if="${categorie.size() > 0}">
 				<table class="table">
 					<thead>
 						<tr>
@@ -38,6 +38,9 @@
 					</tbody>
 				</table>
 			</div>
+			<div th:unless="${categorie.size() > 0}">
+					<h2>Non sono presenti categorie </h2>
+				</div>
 		</div>
 	</div>
 	<footer>
